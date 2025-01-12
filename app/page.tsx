@@ -3,7 +3,7 @@ import Link from "next/link";
 const Home = () => {
   return (
     <main className="flex flex-col h-screen">
-      <header className="w-[90vw] lg:w-[75vw] flex items-center justify-between py-4 px-6 mt-6 lg:mt-10 mx-auto bg-neutral-900 bg-opacity-50 border-2 border-zinc-800 rounded-lg">
+      <header className="w-[90vw] lg:w-[75vw] flex items-center justify-between py-4 px-6 mt-6 lg:mt-10 mx-auto bg-neutral-900 bg-opacity-50 border-2 border-neutral-800 rounded-lg">
         <h2 className="text-xl font-bold">ChatCAM</h2>
         
         <nav className="flex items-center gap-2 ">

@@ -14,5 +14,5 @@ A video conferencing app to, chat with friends & family, do business meetings on
 ### Backend
 
 - Node.js - Node.js - Runtime for JavaScript
-- Encore.ts - Backend Framework
+- Nest.ts - Backend Framework
 - PostgreSQL - Database
