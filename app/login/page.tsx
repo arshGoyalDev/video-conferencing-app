@@ -1,14 +1,15 @@
 "use client";
 
-import { Input, PasswordInput } from "@/components/inputs";
-import Link from "next/link";
 import { useState } from "react";
 
+import Link from "next/link";
+
+import { Input, PasswordInput } from "@/components/inputs";
+
 const LoginPage = () => {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorName, setErrorName] = useState("");
+
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
 
@@ -26,7 +27,7 @@ const LoginPage = () => {
           <h1 className="text-5xl font-semibold">Welcome Back</h1>
           <div className="flex flex-col">
             <p className="text-neutral-500 font-semibold">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link href="/sign-up" className="text-neutral-200 font-bold">
                 Create an account
               </Link>
