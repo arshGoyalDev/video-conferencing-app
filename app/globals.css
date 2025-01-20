@@ -6,11 +6,15 @@
 /* resets */
 /*******************/
 
+* {
+  @apply transition-colors duration-300;
+}
+
 input:focus,
 input:active,
 textarea:focus,
 textarea:active {
-  @apply outline-none border-neutral-700;
+  @apply outline-none border-neutral-300 dark:border-neutral-700;
 }
 
 button:focus,

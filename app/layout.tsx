@@ -1,12 +1,13 @@
 import { ReactNode } from "react";
 
 import type { Metadata } from "next";
-import { Exo_2 } from "next/font/google";
+import { Lora } from "next/font/google";
 
 import "./globals.css";
+import ContextContainer from "@/context";
 
-const exo2 = Exo_2({
-  variable: "--font-exo-2",
+const lora = Lora({
+  // variable: "--font",
   subsets: ["latin"],
 });
 
@@ -23,13 +24,13 @@ const RootLayout = ({
   return (
     <html lang="en">
       <body
-        className={`${exo2.className} bg-neutral-950 text-white`}
+        className={`${lora.className} bg-neutral-50 text-neutral-950 dark:bg-neutral-950 dark:text-neutral-50`}
       >
-        {children}
+        <ContextContainer>{children}</ContextContainer>
       </body>
     </html>
   );
-}
+};
 
-export {metadata}
+export { metadata };
 export default RootLayout;
