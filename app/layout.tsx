@@ -4,10 +4,10 @@ import type { Metadata } from "next";
 import { Lora } from "next/font/google";
 
 import "./globals.css";
+
 import ContextContainer from "@/context";
 
 const lora = Lora({
-  // variable: "--font",
   subsets: ["latin"],
 });
 
