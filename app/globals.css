@@ -6,10 +6,6 @@
 /* resets */
 /*******************/
 
-* {
-  @apply transition-colors duration-300;
-}
-
 input:focus,
 input:active,
 textarea:focus,
@@ -20,22 +16,4 @@ textarea:active {
 button:focus,
 button:active {
   @apply outline-none;
-}
-
-/*******************/
-/* animation */
-/*******************/
-
-.animate-in {
-  animation: animate-in 0.3s;
-}
-@keyframes animate-in {
-  0% {
-    top: 10px;
-    opacity: 0.5;
-  }
-  100% {
-    top: 0;
-    opacity: 1;
-  }
 }

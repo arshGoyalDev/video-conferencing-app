@@ -13,7 +13,7 @@ const Input = ({
 }) => {
   return (
     <div className="w-full flex flex-col gap-2">
-      <h2 className="text-neutral-300 dark:text-neutral-700 uppercase font-bold">{type}</h2>
+      <h2 className="text-neutral-700 uppercase font-bold">{type}</h2>
       <input
         type="text"
         name={type}
@@ -23,7 +23,7 @@ const Input = ({
         autoFocus={true}
         onChange={(e) => setValue(e.target.value)}
         placeholder={type === "name" ? "John Doe" : "johnDoe@domain"}
-        className={` w-full py-3 px-5 bg-neutral-100 dark:bg-neutral-900 rounded-lg placeholder:text-neutral-300 placeholder:dark:text-neutral-700 border-2 border-transparent`}
+        className={` w-full py-3 px-5 bg-neutral-900 rounded-lg placeholder:text-neutral-700 border-2 border-transparent`}
       />
       {error && (
         <>{error !== "" && <p className="text-red-500 mt-3">{error}</p>}</>

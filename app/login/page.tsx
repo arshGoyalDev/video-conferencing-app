@@ -5,7 +5,6 @@ import { useState } from "react";
 import Link from "next/link";
 
 import { Input, PasswordInput } from "@/components/inputs";
-import { ThemeToggle } from "@/components/global";
 
 import { authErrors } from "@/utils/errors";
 
@@ -27,14 +26,14 @@ const LoginPage = () => {
       <div className="relative h-screen flex flex-col justify-center items-center py-10 px-8 md:py-10 md:px-10">
         <Link
           href={"/"}
-          className="absolute top-3 left-3 font-bold py-2 px-4 bg-neutral-100 dark:bg-neutral-900 hover:bg-opacity-30 border-2 border-neutral-200 dark:border-neutral-800 rounded-lg transition-all duration-300"
+          className="absolute top-3 left-3 font-bold py-2 px-4 bg-neutral-900 hover:bg-opacity-30 border-2 border-neutral-800 rounded-lg transition-all duration-300"
         >
           Home
         </Link>
 
         <div className="grid gap-3 w-full md:w-[450px]">
           <h1 className="text-4xl md:text-5xl font-semibold">Welcome Back</h1>
-          <p className="text-neutral-700 dark:text-neutral-300 font-semibold">
+          <p className="text-neutral-300 font-semibold">
             Welcome Back, enter your details.
           </p>
         </div>
@@ -59,21 +58,21 @@ const LoginPage = () => {
               errorPassword={errorPassword}
             />
 
-            <button className="font-bold mt-6 w-full py-[14px] text-white dark:text-black hover:text-neutral-950 hover:dark:text-white bg-neutral-900 dark:bg-neutral-100 hover:bg-opacity-10 border-2 border-neutral-900 dark:border-neutral-50 hover:border-neutral-300 hover:dark:border-neutral-700 rounded-lg transition-all duration-300">
-              Sign Up
+            <button className="font-bold mt-6 w-full py-[14px] text-black hover:text-white bg-neutral-100 hover:bg-opacity-10 border-2 border-neutral-50 hover:border-neutral-700 rounded-lg transition-all duration-300">
+              Login
             </button>
           </div>
         </form>
 
         <div className="mt-6 w-full md:w-[450px]">
           <div className="flex gap-1 w-full items-center mb-6">
-            <span className="w-full h-1 rounded-full bg-neutral-200 dark:bg-neutral-800 dark:bg-opacity-60"></span>
-            <span className="text-sm font-bold text-neutral-400 dark:text-neutral-600">
+            <span className="w-full h-1 rounded-full bg-neutral-800 dark:bg-opacity-60"></span>
+            <span className="text-sm font-bold text-neutral-600">
               OR
             </span>
-            <span className="w-full h-1 rounded-full bg-neutral-200 dark:bg-neutral-800 dark:bg-opacity-60"></span>
+            <span className="w-full h-1 rounded-full bg-neutral-800 dark:bg-opacity-60"></span>
           </div>
-          <button className="w-full py-[14px] bg-neutral-100 dark:bg-neutral-900 dark:bg-opacity-50 border-2 border-neutral-200 dark:border-neutral-800 rounded-lg">
+          <button className="w-full py-[14px] bg-neutral-900 bg-opacity-50 border-2 border-neutral-800 rounded-lg">
             Continue as a Guest
           </button>
         </div>
@@ -81,17 +80,16 @@ const LoginPage = () => {
         <div className="text-center mt-5">
           <p className="text-neutral-500 font-semibold">
             New to ChatCAM?{" "}
-            <Link href="/sign-up" className="text-neutral-800 dark:text-neutral-200 font-bold">
+            <Link href="/sign-up" className="text-neutral-200 font-bold">
               Sign Up
             </Link>
           </p>
         </div>
 
         <div className="absolute top-3 right-3">
-          <ThemeToggle />
         </div>
       </div>
-      <section className="hidden xl:block h-screen bg-neutral-100 dark:bg-zinc-900"></section>
+      <section className="hidden xl:block h-screen bg-zinc-900"></section>
     </main>
   );
 };

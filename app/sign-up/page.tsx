@@ -5,9 +5,11 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { Input, PasswordInput } from "@/components/inputs";
+
 // import { useRouter } from "next/navigation";
+
 import { authErrors } from "@/utils/errors";
-import { ThemeToggle } from "@/components/global";
+import { apiClient, routes } from "@/utils/api";
 
 const SignUpPage = () => {
   // const router = useRouter();
@@ -20,7 +22,7 @@ const SignUpPage = () => {
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     if (
       authErrors(
         email,
@@ -31,7 +33,22 @@ const SignUpPage = () => {
         setErrorName
       )
     ) {
-      console.log("hello");
+      try {
+        const response = await apiClient.post(
+          routes.SIGN_UP_ROUTE,
+          {
+            email,
+            password,
+            firstName: name.split(" ")[0],
+            lastName: name.split(" ").at(-1),
+          },
+          { withCredentials: true }
+        );
+
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -40,14 +57,16 @@ const SignUpPage = () => {
       <div className="relative h-full flex flex-col justify-center items-center py-10 px-8 md:py-10 md:px-10 w-full">
         <Link
           href={"/"}
-          className="absolute top-3 left-3 font-bold py-2 px-4 bg-neutral-100 dark:bg-neutral-900 hover:bg-opacity-30 border-2 border-neutral-200 dark:border-neutral-800 rounded-lg transition-all duration-300"
+          className="absolute top-3 left-3 font-bold py-2 px-4 bg-neutral-900 hover:bg-opacity-30 border-2 border-neutral-800 rounded-lg transition-all duration-300"
         >
           Home
         </Link>
 
         <div className="grid gap-3 w-full md:w-[450px]">
-          <h1 className="text-4xl md:text-5xl font-semibold">Create an Account</h1>
-          <p className="text-neutral-700 dark:text-neutral-300 font-semibold">
+          <h1 className="text-4xl md:text-5xl font-semibold">
+            Create an Account
+          </h1>
+          <p className="text-neutral-300 font-semibold">
             Let&#39;s sign up quickly to get started.
           </p>
         </div>
@@ -78,7 +97,7 @@ const SignUpPage = () => {
               errorPassword={errorPassword}
             />
 
-            <button className="font-bold mt-6 w-full py-[14px] text-white dark:text-black hover:text-neutral-950 hover:dark:text-white bg-neutral-900 dark:bg-neutral-100 hover:bg-opacity-10 border-2 border-neutral-900 dark:border-neutral-50 hover:border-neutral-300 hover:dark:border-neutral-700 rounded-lg transition-all duration-300">
+            <button className="font-bold mt-6 w-full py-[14px] text-black hover:text-white bg-neutral-100 hover:bg-opacity-10 border-2 border-neutral-50 hover:border-neutral-700 rounded-lg transition-all duration-300">
               Sign Up
             </button>
           </div>
@@ -86,11 +105,11 @@ const SignUpPage = () => {
 
         <div className="mt-6 w-full md:w-[450px]">
           <div className="flex gap-1 w-full items-center mb-6">
-            <span className="w-full h-1 rounded-full bg-neutral-200 dark:bg-neutral-800 dark:bg-opacity-60"></span>
-            <span className="text-sm font-bold text-neutral-400 dark:text-neutral-600">OR</span>
-            <span className="w-full h-1 rounded-full bg-neutral-200 dark:bg-neutral-800 dark:bg-opacity-60"></span>
+            <span className="w-full h-1 rounded-full bg-neutral-800 dark:bg-opacity-60"></span>
+            <span className="text-sm font-bold text-neutral-600">OR</span>
+            <span className="w-full h-1 rounded-full bg-neutral-800 bg-opacity-60"></span>
           </div>
-          <button className="w-full py-[14px] bg-neutral-100 dark:bg-neutral-900 dark:bg-opacity-50 border-2 border-neutral-200 dark:border-neutral-800 rounded-lg">
+          <button className="w-full py-[14px] bg-neutral-900 bg-opacity-50 border-2 border-neutral-800 rounded-lg">
             Continue as a Guest
           </button>
         </div>
@@ -98,17 +117,13 @@ const SignUpPage = () => {
         <div className="text-center mt-5">
           <p className="text-neutral-500 font-semibold">
             Already have an account?{" "}
-            <Link href="/login" className="text-neutral-800 dark:text-neutral-200 font-bold">
+            <Link href="/login" className="text-neutral-200 font-bold">
               Login
             </Link>
           </p>
         </div>
-        <div className="absolute top-4 right-4 flex items-center gap-2">
-          <p className="text-neutral-300 dark:text-neutral-700 font-bold text-sm uppercase">Theme</p>
-          <ThemeToggle />
-        </div>
       </div>
-      <section className="hidden xl:block h-screen bg-neutral-100 dark:bg-zinc-900"></section>
+      <section className="hidden xl:block h-screen bg-zinc-900"></section>
     </main>
   );
 };

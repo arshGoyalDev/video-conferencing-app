@@ -17,7 +17,7 @@ const PasswordInput = ({
 
   return (
     <div className="relative w-full flex flex-col gap-2">
-      <h2 className="text-neutral-300 dark:text-neutral-700 uppercase font-bold">password</h2>
+      <h2 className="text-neutral-700 uppercase font-bold">password</h2>
 
       <input
         type={viewPassword ? "text" : "password"}
@@ -27,7 +27,7 @@ const PasswordInput = ({
         autoComplete="off"
         onChange={(e) => setPassword(e.target.value)}
         placeholder="***************"
-        className={` w-full py-3 px-5 bg-neutral-100 dark:bg-neutral-900 border-2 border-transparent rounded-lg placeholder:text-neutral-300 placeholder:dark:text-neutral-700`}
+        className={` w-full py-3 px-5 bg-neutral-900 border-2 border-transparent rounded-lg placeholder:text-neutral-700`}
       />
 
       {errorPassword && <p className="text-red-500 mt-3">{errorPassword}</p>}

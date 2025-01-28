@@ -5,8 +5,6 @@ import { Lora } from "next/font/google";
 
 import "./globals.css";
 
-import ContextContainer from "@/context";
-
 const lora = Lora({
   subsets: ["latin"],
 });
@@ -24,9 +22,9 @@ const RootLayout = ({
   return (
     <html lang="en">
       <body
-        className={`${lora.className} bg-neutral-50 text-neutral-950 dark:bg-neutral-950 dark:text-neutral-50`}
+        className={`${lora.className} bg-neutral-950 text-neutral-50`}
       >
-        <ContextContainer>{children}</ContextContainer>
+        {children}
       </body>
     </html>
   );
