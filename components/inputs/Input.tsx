@@ -23,10 +23,10 @@ const Input = ({
         autoFocus={true}
         onChange={(e) => setValue(e.target.value)}
         placeholder={type === "name" ? "John Doe" : "johnDoe@domain"}
-        className={` w-full py-3 px-5 bg-neutral-900 rounded-lg placeholder:text-neutral-700 border-2 border-transparent`}
+        className={` w-full py-2 px-4 bg-neutral-900 rounded-lg placeholder:text-neutral-700 border-2 border-transparent`}
       />
       {error && (
-        <>{error !== "" && <p className="text-red-500 mt-3">{error}</p>}</>
+        <>{error !== "" && <p className="text-red-500 text-xs mt-1">{error}</p>}</>
       )}
     </div>
   );

@@ -6,13 +6,16 @@ import { useState } from "react";
 
 import { Input, PasswordInput } from "@/components/inputs";
 
-// import { useRouter } from "next/navigation";
-
 import { authErrors } from "@/utils/errors";
 import { apiClient, routes } from "@/utils/api";
 
+import useAppStore from "@/store";
+
+import { useRouter } from "next/navigation";
+
 const SignUpPage = () => {
-  // const router = useRouter();
+  const {setUserInfo} = useAppStore();
+  const router = useRouter();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -45,6 +48,11 @@ const SignUpPage = () => {
           { withCredentials: true }
         );
 
+        if (response.status === 201) {
+          setUserInfo(response.data.user);
+
+          router.push("/app");
+        }
         console.log(response);
       } catch (error) {
         console.log(error);
@@ -71,7 +79,7 @@ const SignUpPage = () => {
           </p>
         </div>
         <form
-          className="mt-10 md:mt-20 w-full max-w-[450px]"
+          className="mt-10 w-full max-w-[450px]"
           onSubmit={(e) => {
             e.preventDefault();
             handleSignUp();
@@ -97,7 +105,7 @@ const SignUpPage = () => {
               errorPassword={errorPassword}
             />
 
-            <button className="font-bold mt-6 w-full py-[14px] text-black hover:text-white bg-neutral-100 hover:bg-opacity-10 border-2 border-neutral-50 hover:border-neutral-700 rounded-lg transition-all duration-300">
+            <button className="font-bold mt-6 w-full py-[10px] text-black hover:text-white bg-neutral-100 hover:bg-opacity-10 border-2 border-neutral-50 hover:border-neutral-700 rounded-lg transition-all duration-300">
               Sign Up
             </button>
           </div>
@@ -109,7 +117,7 @@ const SignUpPage = () => {
             <span className="text-sm font-bold text-neutral-600">OR</span>
             <span className="w-full h-1 rounded-full bg-neutral-800 bg-opacity-60"></span>
           </div>
-          <button className="w-full py-[14px] bg-neutral-900 bg-opacity-50 border-2 border-neutral-800 rounded-lg">
+          <button className="w-full py-[10px] bg-neutral-900 bg-opacity-50 border-2 border-neutral-800 rounded-lg">
             Continue as a Guest
           </button>
         </div>

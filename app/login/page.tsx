@@ -7,17 +7,50 @@ import Link from "next/link";
 import { Input, PasswordInput } from "@/components/inputs";
 
 import { authErrors } from "@/utils/errors";
+import { apiClient, routes } from "@/utils/api";
+
+import useAppStore from "@/store";
+
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
+  const { setUserInfo } = useAppStore();
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (authErrors(email, password, setErrorEmail, setErrorPassword)) {
-      console.log("hello");
+      try {
+        const response = await apiClient.post(
+          routes.LOGIN_ROUTE,
+          {
+            email,
+            password,
+          },
+          { withCredentials: true }
+        );
+
+        if (response.status === 201) {
+          setUserInfo(response.data.user);
+
+          router.push("/settings?tab=profile");
+        }
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
+        if (error.status === 404) {
+          setErrorEmail("User not found");
+        } else if (error.status === 401) {
+          setErrorPassword("Incorrect Password");
+        } else {
+          setErrorPassword("Internal server error, please try after some time");
+        }
+      }
     }
   };
 
@@ -38,7 +71,7 @@ const LoginPage = () => {
           </p>
         </div>
         <form
-          className="mt-10 md:mt-20 w-full md:w-[450px]"
+          className="mt-10 w-full md:w-[450px]"
           onSubmit={(e) => {
             e.preventDefault();
             handleLogin();
@@ -58,7 +91,7 @@ const LoginPage = () => {
               errorPassword={errorPassword}
             />
 
-            <button className="font-bold mt-6 w-full py-[14px] text-black hover:text-white bg-neutral-100 hover:bg-opacity-10 border-2 border-neutral-50 hover:border-neutral-700 rounded-lg transition-all duration-300">
+            <button className="font-bold mt-6 w-full py-[10px] text-black hover:text-white bg-neutral-100 hover:bg-opacity-10 border-2 border-neutral-50 hover:border-neutral-700 rounded-lg transition-all duration-300">
               Login
             </button>
           </div>
@@ -67,12 +100,10 @@ const LoginPage = () => {
         <div className="mt-6 w-full md:w-[450px]">
           <div className="flex gap-1 w-full items-center mb-6">
             <span className="w-full h-1 rounded-full bg-neutral-800 dark:bg-opacity-60"></span>
-            <span className="text-sm font-bold text-neutral-600">
-              OR
-            </span>
+            <span className="text-sm font-bold text-neutral-600">OR</span>
             <span className="w-full h-1 rounded-full bg-neutral-800 dark:bg-opacity-60"></span>
           </div>
-          <button className="w-full py-[14px] bg-neutral-900 bg-opacity-50 border-2 border-neutral-800 rounded-lg">
+          <button className="w-full py-[10px] bg-neutral-900 bg-opacity-50 border-2 border-neutral-800 rounded-lg">
             Continue as a Guest
           </button>
         </div>
@@ -86,8 +117,7 @@ const LoginPage = () => {
           </p>
         </div>
 
-        <div className="absolute top-3 right-3">
-        </div>
+        <div className="absolute top-3 right-3"></div>
       </div>
       <section className="hidden xl:block h-screen bg-zinc-900"></section>
     </main>
