@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Input, PasswordInput } from "@/components/inputs";
 
@@ -14,7 +14,7 @@ import useAppStore from "@/store";
 import { useRouter } from "next/navigation";
 
 const SignUpPage = () => {
-  const {setUserInfo} = useAppStore();
+  const { userInfo, setUserInfo } = useAppStore();
   const router = useRouter();
 
   const [name, setName] = useState("");
@@ -24,6 +24,14 @@ const SignUpPage = () => {
   const [errorName, setErrorName] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
+
+  useEffect(() => {
+    if (userInfo.email) {
+      router.push("/app");
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userInfo]);
 
   const handleSignUp = async () => {
     if (
@@ -51,7 +59,7 @@ const SignUpPage = () => {
         if (response.status === 201) {
           setUserInfo(response.data.user);
 
-          router.push("/app");
+          router.push("/settings?tab=profile");
         }
         console.log(response);
       } catch (error) {

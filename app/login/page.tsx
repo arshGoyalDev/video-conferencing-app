@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Link from "next/link";
 
@@ -14,7 +14,7 @@ import useAppStore from "@/store";
 import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
-  const { setUserInfo } = useAppStore();
+  const { userInfo, setUserInfo } = useAppStore();
   const router = useRouter();
 
   const [email, setEmail] = useState("");
@@ -22,6 +22,11 @@ const LoginPage = () => {
 
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
+
+  useEffect(() => {
+    if (userInfo.email) router.push("/app");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userInfo]);
 
   const handleLogin = async () => {
     if (authErrors(email, password, setErrorEmail, setErrorPassword)) {
@@ -38,7 +43,7 @@ const LoginPage = () => {
         if (response.status === 201) {
           setUserInfo(response.data.user);
 
-          router.push("/settings?tab=profile");
+          router.push("/app");
         }
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

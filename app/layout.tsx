@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 
 import type { Metadata } from "next";
-import { Lora } from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
 
 import "./globals.css";
 
-const lora = Lora({
+const josefinSans = Josefin_Sans({
   subsets: ["latin"],
 });
 
@@ -22,7 +22,7 @@ const RootLayout = ({
   return (
     <html lang="en">
       <body
-        className={`${lora.className} bg-neutral-950 text-neutral-50`}
+        className={`${josefinSans.className} bg-neutral-950 text-neutral-50`}
       >
         {children}
       </body>
