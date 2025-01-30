@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const Navbar = ({ tab }: { tab: string | null }) => {
   return (
-    <nav className="fixed bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-4 md:gap-3 py-2 px-3 bg-neutral-900 border-2 border-neutral-800 rounded-lg">
+    <nav className="fixed bottom-8 md:bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-4 md:gap-3 py-2 px-3 bg-neutral-900 border-2 border-neutral-800 rounded-lg">
       <Link
         href={"/settings?tab=profile"}
         className={`flex gap-2 items-center  ${
