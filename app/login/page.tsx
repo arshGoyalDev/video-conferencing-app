@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import Link from "next/link";
 
-import { Input, PasswordInput } from "@/components/inputs";
+import { Input, PasswordInput } from "@/components/auth";
 
 import { authErrors } from "@/utils/errors";
 import { apiClient, routes } from "@/utils/api";

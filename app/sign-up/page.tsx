@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { useEffect, useState } from "react";
 
-import { Input, PasswordInput } from "@/components/inputs";
+import { Input, PasswordInput } from "@/components/auth";
 
 import { authErrors } from "@/utils/errors";
 import { apiClient, routes } from "@/utils/api";
@@ -27,7 +27,7 @@ const SignUpPage = () => {
 
   useEffect(() => {
     if (userInfo.email) {
-      router.push("/app");
+      router.push("/settings?tab=profile");
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

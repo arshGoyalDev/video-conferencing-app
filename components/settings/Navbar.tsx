@@ -1,10 +1,15 @@
 import Link from "next/link";
 
-const Navbar = ({tab}: {tab: string | null}) => {
+const Navbar = ({ tab }: { tab: string | null }) => {
   return (
-    <nav className="fixed bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-8 md:gap-3 py-2 px-3 bg-neutral-100 dark:bg-neutral-900 border-2 border-neutral-200 dark:border-neutral-800 rounded-lg">
-      <Link href={"/settings?tab=profile"} className={`flex gap-2 items-center  ${tab === "profile" && "bg-neutral-200 dark:bg-neutral-800 border-2 border-neutral-200 dark:border-neutral-800"} rounded-lg px-2 py-2`}>
-        <span className="stroke-neutral-950 dark:stroke-white">
+    <nav className="fixed bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-4 md:gap-3 py-2 px-3 bg-neutral-900 border-2 border-neutral-800 rounded-lg">
+      <Link
+        href={"/settings?tab=profile"}
+        className={`flex gap-2 items-center  ${
+          tab === "profile" && "bg-neutral-800 border-2 border-neutral-800"
+        } rounded-lg py-1.5 px-3`}
+      >
+        <span className="stroke-white">
           <svg
             width="20"
             height="20"
@@ -26,10 +31,15 @@ const Navbar = ({tab}: {tab: string | null}) => {
             />
           </svg>
         </span>
-        <span className="hidden md:block">Profile</span>
+        <span className="hidden md:block mt-1">Profile</span>
       </Link>
-      <Link href={"/settings?tab=video"} className={`flex gap-2 items-center  ${tab === "video" && "bg-neutral-200 dark:bg-neutral-800 border-2 border-neutral-200 dark:border-neutral-800"} rounded-lg px-2 py-2`}>
-        <span className="stroke-neutral-950 dark:stroke-white">
+      <Link
+        href={"/settings?tab=video"}
+        className={`flex gap-2 items-center  ${
+          tab === "video" && "bg-neutral-800 border-2 border-neutral-800"
+        } rounded-lg py-1.5 px-3`}
+      >
+        <span className="stroke-white">
           <svg
             width="20"
             height="20"
@@ -57,10 +67,15 @@ const Navbar = ({tab}: {tab: string | null}) => {
             />
           </svg>
         </span>
-        <span className="hidden md:block">Video</span>
+        <span className="hidden md:block mt-1">Video</span>
       </Link>
-      <Link href={"/settings?tab=audio"} className={`flex gap-2 items-center  ${tab === "audio" && "bg-neutral-200 dark:bg-neutral-800 border-2 border-neutral-200 dark:border-neutral-800"} rounded-lg px-2 py-2`}>
-        <span className="stroke-neutral-950 dark:stroke-white">
+      <Link
+        href={"/settings?tab=audio"}
+        className={`flex gap-2 items-center  ${
+          tab === "audio" && "bg-neutral-800 border-2 border-neutral-800"
+        } rounded-lg py-1.5 px-3`}
+      >
+        <span className="stroke-white">
           <svg
             width="20"
             height="20"
@@ -94,10 +109,13 @@ const Navbar = ({tab}: {tab: string | null}) => {
             />
           </svg>
         </span>
-        <span className="hidden md:block">Audio</span>
+        <span className="hidden md:block mt-1">Audio</span>
       </Link>
-      <Link href={"/app"} className={`flex gap-2 items-center hover:bg-neutral-200 hover:dark:bg-neutral-800 hover:border-2 hover:border-neutral-200 hover:dark:border-neutral-800 rounded-lg px-2 py-2`}>
-        <span className="stroke-neutral-950 dark:stroke-white">
+      <Link
+        href={"/app"}
+        className={`flex gap-2 items-center rounded-lg py-1.5 px-3`}
+      >
+        <span className="stroke-white">
           <svg
             width="20"
             height="20"
@@ -119,7 +137,7 @@ const Navbar = ({tab}: {tab: string | null}) => {
             />
           </svg>
         </span>
-        <span className="hidden md:block">Home</span>
+        <span className="mt-1">Home</span>
       </Link>
     </nav>
   );
