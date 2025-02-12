@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { Navbar, ProfileTab } from "@/components/settings";
+import { Navbar, ProfileTab, VideoTab } from "@/components/settings";
 
 const SettingsPage = () => {
   const searchParams = useSearchParams();
@@ -20,8 +20,8 @@ const SettingsPage = () => {
 
   return (
     <main>
-      {/* {searchParams } */}
       {tab === "profile" && <ProfileTab />}
+      {tab === "video" && <VideoTab />}
       <Navbar tab={tab} />
     </main>
   );
