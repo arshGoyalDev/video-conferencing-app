@@ -32,7 +32,7 @@ const LoginPage = () => {
     if (authErrors(email, password, setErrorEmail, setErrorPassword)) {
       try {
         const response = await apiClient.post(
-          routes.LOGIN_ROUTE,
+          routes.LOGIN,
           {
             email,
             password,
@@ -49,7 +49,7 @@ const LoginPage = () => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         if (error.status === 404) {
-          setErrorEmail("User not found");
+          setErrorEmail("Account with the given email not found");
         } else if (error.status === 401) {
           setErrorPassword("Incorrect Password");
         } else {

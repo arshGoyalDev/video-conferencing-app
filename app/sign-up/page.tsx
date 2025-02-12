@@ -46,7 +46,7 @@ const SignUpPage = () => {
     ) {
       try {
         const response = await apiClient.post(
-          routes.SIGN_UP_ROUTE,
+          routes.SIGN_UP,
           {
             email,
             password,
@@ -61,9 +61,13 @@ const SignUpPage = () => {
 
           router.push("/settings?tab=profile");
         }
-        console.log(response);
-      } catch (error) {
-        console.log(error);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
+        if (error.status === 403) {
+          setErrorEmail("This email is already associated with an account");
+        } else {
+          setErrorPassword("Internal server error, please try after some time");
+        }
       }
     }
   };

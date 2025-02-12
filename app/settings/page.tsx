@@ -20,7 +20,8 @@ const SettingsPage = () => {
 
   return (
     <main>
-      <ProfileTab />
+      {/* {searchParams } */}
+      {tab === "profile" && <ProfileTab />}
       <Navbar tab={tab} />
     </main>
   );

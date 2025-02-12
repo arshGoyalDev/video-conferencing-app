@@ -1,8 +1,10 @@
-const AUTH_ROUTE = "auth";
-const SIGN_UP_ROUTE = `${AUTH_ROUTE}/sign-up`;
-const LOGIN_ROUTE = `${AUTH_ROUTE}/login`;
-const USER_INFO = `${AUTH_ROUTE}/user-info`;
-const UPDATE_DETAILS_ROUTE = `${AUTH_ROUTE}/update-details`;
-const LOGOUT_ROUTE = `${AUTH_ROUTE}/logout`;
+const AUTH = "auth";
+const SIGN_UP = `${AUTH}/sign-up`;
+const LOGIN = `${AUTH}/login`;
+const USER_INFO = `${AUTH}/user-info`;
+const UPDATE_DETAILS = `${AUTH}/update-details`;
+const LOGOUT = `${AUTH}/logout`;
+const ADD_PROFILE_PIC = `${AUTH}/add-profile-pic`;
+const REMOVE_PROFILE_PIC = `${AUTH}/remove-profile-pic`
 
-export { SIGN_UP_ROUTE, LOGIN_ROUTE, USER_INFO, UPDATE_DETAILS_ROUTE,LOGOUT_ROUTE };
+export { SIGN_UP, LOGIN, USER_INFO, UPDATE_DETAILS, LOGOUT, ADD_PROFILE_PIC, REMOVE_PROFILE_PIC };

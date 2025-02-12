@@ -9,7 +9,7 @@ const updateDetails = async (
 ) => {
   try {
     const response = await apiClient.post(
-      routes.UPDATE_DETAILS_ROUTE,
+      routes.UPDATE_DETAILS,
       {
         firstName,
         lastName,
@@ -33,7 +33,7 @@ const logout = async (
 ) => {
   try {
     const response = await apiClient.post(
-      routes.LOGOUT_ROUTE,
+      routes.LOGOUT,
       {},
       { withCredentials: true }
     );
