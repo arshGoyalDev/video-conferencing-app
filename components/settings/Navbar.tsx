@@ -1,10 +1,32 @@
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
-const Navbar = ({ tab }: { tab: string | null }) => {
+const Navbar = ({
+  tab,
+  stopVideo,
+}: {
+  tab: string | null;
+  stopVideo: () => void;
+}) => {
+  const router = useRouter();
+  const [currentTab, setCurrentTab] = useState(tab ?? "profile");
+
+  useEffect(() => {
+    const changeTab = setTimeout(() => {
+      if (tab === "video") stopVideo();
+
+      if (currentTab !== "app") router.push(`/settings?tab=${currentTab}`);
+      else router.push("/app");
+    }, 100);
+
+    return () => clearTimeout(changeTab);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentTab]);
+
   return (
     <nav className="fixed bottom-8 md:bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-4 md:gap-3 py-2 px-3 bg-neutral-900 border-2 border-neutral-800 rounded-lg">
-      <Link
-        href={"/settings?tab=profile"}
+      <button
+        onClick={() => setCurrentTab("profile")}
         className={`flex gap-2 items-center  ${
           tab === "profile" && "bg-neutral-800 border-2 border-neutral-800"
         } rounded-lg py-1.5 px-3`}
@@ -32,9 +54,9 @@ const Navbar = ({ tab }: { tab: string | null }) => {
           </svg>
         </span>
         <span className="hidden md:block mt-1">Profile</span>
-      </Link>
-      <Link
-        href={"/settings?tab=video"}
+      </button>
+      <button
+        onClick={() => setCurrentTab("video")}
         className={`flex gap-2 items-center  ${
           tab === "video" && "bg-neutral-800 border-2 border-neutral-800"
         } rounded-lg py-1.5 px-3`}
@@ -68,9 +90,9 @@ const Navbar = ({ tab }: { tab: string | null }) => {
           </svg>
         </span>
         <span className="hidden md:block mt-1">Video</span>
-      </Link>
-      <Link
-        href={"/settings?tab=audio"}
+      </button>
+      <button
+        onClick={() => setCurrentTab("audio")}
         className={`flex gap-2 items-center  ${
           tab === "audio" && "bg-neutral-800 border-2 border-neutral-800"
         } rounded-lg py-1.5 px-3`}
@@ -110,9 +132,9 @@ const Navbar = ({ tab }: { tab: string | null }) => {
           </svg>
         </span>
         <span className="hidden md:block mt-1">Audio</span>
-      </Link>
-      <Link
-        href={"/app"}
+      </button>
+      <button
+        onClick={() => setCurrentTab("app")}
         className={`flex gap-2 items-center rounded-lg py-1.5 px-3`}
       >
         <span className="stroke-white">
@@ -138,8 +160,9 @@ const Navbar = ({ tab }: { tab: string | null }) => {
           </svg>
         </span>
         <span className="mt-1">Home</span>
-      </Link>
+      </button>
     </nav>
   );
 };
+
 export default Navbar;
