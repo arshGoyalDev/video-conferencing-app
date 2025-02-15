@@ -1,3 +1,4 @@
+import useAppStore from "@/store";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -8,15 +9,18 @@ const Navbar = ({
   tab: string | null;
   stopVideo: () => void;
 }) => {
+  const { userInfo } = useAppStore();
   const router = useRouter();
   const [currentTab, setCurrentTab] = useState(tab ?? "profile");
 
   useEffect(() => {
     const changeTab = setTimeout(() => {
-      if (tab === "video") stopVideo();
+      if (userInfo.email) {
+        if (tab === "video") stopVideo();
 
-      if (currentTab !== "app") router.push(`/settings?tab=${currentTab}`);
-      else router.push("/app");
+        if (currentTab !== "app") router.push(`/settings?tab=${currentTab}`);
+        else router.push("/app");
+      }
     }, 100);
 
     return () => clearTimeout(changeTab);

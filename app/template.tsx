@@ -11,7 +11,7 @@ import { apiClient, routes } from "@/utils/api";
 const Template = ({ children }: { children: ReactElement }) => {
   const router = useRouter();
   const pathname = usePathname();
-  
+
   const { setUserInfo } = useAppStore();
 
   useEffect(() => {
