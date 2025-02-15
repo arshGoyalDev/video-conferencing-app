@@ -7,4 +7,16 @@ interface UserInfo {
   profilePic: string;
 }
 
-export type { UserInfo };
+interface Settings {
+  video: {
+    videoFlip: boolean;
+  };
+  mic: {
+    volume: number;
+  }
+  speaker: {
+    volume: number;
+  }
+}
+
+export type { UserInfo, Settings };
