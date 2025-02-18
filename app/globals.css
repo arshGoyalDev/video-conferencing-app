@@ -17,3 +17,7 @@ button:focus,
 button:active {
   @apply outline-none;
 }
+
+* {
+  @apply select-none cursor-none;
+}
