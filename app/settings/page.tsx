@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { Navbar, ProfileTab, VideoTab } from "@/components/settings";
+import { AudioTab, Navbar, ProfileTab, VideoTab } from "@/components/settings";
 
 const SettingsPage = () => {
   const searchParams = useSearchParams();
@@ -14,6 +14,7 @@ const SettingsPage = () => {
 
   const [videoRunning, setVideoRunning] = useState(true);
   const [hasPermission, setHasPermission] = useState(true);
+  
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
 
@@ -72,6 +73,7 @@ const SettingsPage = () => {
           // setVideoRunning={setVideoRunning}
         />
       )}
+      {tab === "audio" && <AudioTab />}
       <Navbar tab={tab} stopVideo={stopVideo} />
     </main>
   );

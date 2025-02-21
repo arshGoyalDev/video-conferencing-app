@@ -1,5 +1,6 @@
 import Navbar from "./Navbar";
-import ProfileTab from "./profile";
-import VideoTab from "./video";
+import ProfileTab from "./ProfileTab";
+import VideoTab from "./VideoTab";
+import AudioTab from "./AudioTab";
 
-export { Navbar, ProfileTab, VideoTab };
+export { Navbar, ProfileTab, VideoTab, AudioTab };

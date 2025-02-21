@@ -5,8 +5,6 @@ import { Josefin_Sans } from "next/font/google";
 
 import "./globals.css";
 
-import { Cursor } from "@/components/global";
-
 const josefinSans = Josefin_Sans({
   subsets: ["latin"],
 });
@@ -26,7 +24,6 @@ const RootLayout = ({
       <body
         className={`${josefinSans.className} bg-neutral-950 text-neutral-50`}
       >
-        <Cursor />
         {children}
       </body>
     </html>

@@ -12,9 +12,11 @@ interface Settings {
     videoFlip: boolean;
   };
   mic: {
+    device: string;
     volume: number;
   }
   speaker: {
+    device: string;
     volume: number;
   }
 }

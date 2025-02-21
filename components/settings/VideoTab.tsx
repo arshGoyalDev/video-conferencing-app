@@ -108,18 +108,13 @@ const VideoTab = ({
         )}
       </div>
 
-      <div className="flex flex-col gap-5">
-        <div className="w-[85vw] p-4 md:max-w-[700px] bg-neutral-900 border-2 border-neutral-800 rounded-lg">
-          <h2 className="text-neutral-500 text-sm uppercase font-bold">
-            Video Settings
-          </h2>
-        </div>
-
-        <div className=" w-[85vw] py-4 md:max-w-[700px] bg-neutral-900 border-2 border-neutral-800 rounded-lg">
-          <div className="flex items-center justify-between px-4">
-            <h3 className="text-neutral-500 font-bold">Flip Video</h3>
-            <ToggleButton value={videoFlip} setValue={setVideoFlip} />
-          </div>
+      <div className="flex flex-col gap-1  w-[85vw] py-4 md:max-w-[600px] bg-neutral-900 border-2 border-neutral-800 rounded-lg">
+        <h2 className="text-neutral-500 text-sm uppercase font-bold border-b-2 border-neutral-800 pb-3 px-4">
+          Video Settings
+        </h2>
+        <div className="flex items-center justify-between pt-2 px-4">
+          <h3 className="text-neutral-500 font-bold">Flip Video</h3>
+          <ToggleButton value={videoFlip} setValue={setVideoFlip} />
         </div>
       </div>
     </div>
