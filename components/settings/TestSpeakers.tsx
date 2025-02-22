@@ -11,6 +11,7 @@ const TestSpeakers = () => {
   const [selectedSpeakerDevice, setSelectedSpeakerDevice] = useState("");
   const [speakerDevicesMenu, setSpeakerDevicesMenu] = useState(false);
   const [audioPaused, setAudioPaused] = useState(false);
+
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
@@ -43,8 +44,11 @@ const TestSpeakers = () => {
 
   const handleDeviceChange = async (deviceId: string) => {
     try {
-      const audioElements = document.querySelector<HTMLAudioElement>("#audio");
-      await audioElements?.setSinkId(deviceId);
+      const audioElements = document.querySelectorAll("audio");
+
+      audioElements.forEach((audio) => {
+        audio.setSinkId(deviceId);
+      });
 
       setSelectedSpeakerDevice(deviceId);
       setSpeakerDevicesMenu(false);
@@ -64,7 +68,7 @@ const TestSpeakers = () => {
     };
 
     setSettings(newSettings);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSpeakerDevice]);
 
   return (
