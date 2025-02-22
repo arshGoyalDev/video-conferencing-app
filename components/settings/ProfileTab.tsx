@@ -4,11 +4,11 @@ import React, { useEffect, useRef, useState } from "react";
 import EditInput from "./EditInput";
 
 import useAppStore from "@/store";
-import { logout, updateDetails } from "@/utils/functions/auth";
+import { logout, updateDetails } from "@/lib/functions/auth";
 
 import { useRouter } from "next/navigation";
 
-import { apiClient, routes } from "@/utils/api";
+import { apiClient, routes } from "@/lib/api";
 
 const ProfileTab = () => {
   const { userInfo, setUserInfo } = useAppStore();

@@ -1,4 +1,4 @@
-import { apiClient, routes } from "@/utils/api";
+import { apiClient, routes } from "@/lib/api";
 import { UserInfo } from "@/utils/types";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
