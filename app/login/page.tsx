@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Input, PasswordInput } from "@/components/auth";
 
 import { authErrors } from "@/utils/errors";
-import { apiClient, routes } from "@/utils/api";
+import { apiClient, routes } from "@/lib/api";
 
 import useAppStore from "@/store";
 
@@ -69,14 +69,14 @@ const LoginPage = () => {
           Home
         </Link>
 
-        <div className="grid gap-3 w-full md:w-[450px]">
+        <div className="grid gap-3 w-full max-w-[450px]">
           <h1 className="text-4xl md:text-5xl font-semibold">Welcome Back</h1>
           <p className="text-neutral-300 font-semibold">
             Welcome Back, enter your details.
           </p>
         </div>
         <form
-          className="mt-10 w-full md:w-[450px]"
+          className="mt-10 w-full max-w-[450px]"
           onSubmit={(e) => {
             e.preventDefault();
             handleLogin();
@@ -102,7 +102,7 @@ const LoginPage = () => {
           </div>
         </form>
 
-        <div className="mt-6 w-full md:w-[450px]">
+        <div className="mt-6 w-full max-w-[450px]">
           <div className="flex gap-1 w-full items-center mb-6">
             <span className="w-full h-1 rounded-full bg-neutral-800 dark:bg-opacity-60"></span>
             <span className="text-sm font-bold text-neutral-600">OR</span>

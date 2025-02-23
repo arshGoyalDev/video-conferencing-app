@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 import useAppStore from "@/store";
 
-import { apiClient, routes } from "@/utils/api";
+import { apiClient, routes } from "@/lib/api";
 
 const Template = ({ children }: { children: ReactElement }) => {
   const router = useRouter();

@@ -88,8 +88,7 @@ const ProfileTab = () => {
                 src={`${process.env.NEXT_PUBLIC_SERVER_URL}${userInfo.profilePic}`}
                 alt={userInfo.firstName}
                 className="w-full h-full rounded-xl"
-              ></img>
-
+              />
               <button
                 onClick={removeProfilePic}
                 className="absolute top-1.5 right-1.5 p-1.5 rounded-md bg-neutral-800 border-2 border-neutral-700"

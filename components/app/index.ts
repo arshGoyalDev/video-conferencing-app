@@ -1,3 +1,3 @@
-import SideBar from "./SideBar";
+import BottomNav from "./BottomNav";
 
-export { SideBar };
+export { BottomNav };
