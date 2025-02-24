@@ -25,6 +25,8 @@ const SignUpPage = () => {
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     if (userInfo.email) {
       router.push("/settings?tab=profile");
@@ -45,6 +47,8 @@ const SignUpPage = () => {
       )
     ) {
       try {
+        setLoading(true);
+
         const response = await apiClient.post(
           routes.SIGN_UP,
           {
@@ -58,16 +62,19 @@ const SignUpPage = () => {
 
         if (response.status === 201) {
           setUserInfo(response.data.user);
-
+          setLoading(false);
           router.push("/settings?tab=profile");
         }
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
+        console.log(error);
         if (error.status === 403) {
           setErrorEmail("This email is already associated with an account");
         } else {
           setErrorPassword("Internal server error, please try after some time");
         }
+
+        setLoading(false);
       }
     }
   };
@@ -117,8 +124,12 @@ const SignUpPage = () => {
               errorPassword={errorPassword}
             />
 
-            <button className="font-bold mt-6 w-full py-[10px] text-black hover:text-white bg-neutral-100 hover:bg-opacity-10 border-2 border-neutral-50 hover:border-neutral-700 rounded-lg transition-all duration-300">
-              Sign Up
+            <button className="grid place-content-center font-bold mt-6 w-full py-[10px] text-black bg-white hover:bg-opacity-80 border-2 border-neutral-50 rounded-lg transition-all duration-300">
+              {loading ? (
+                <div className="w-5 h-5 border-b-2 border-r-2 border-black rounded-full animate-spin"></div>
+              ) : (
+                <span>Sign Up</span>
+              )}
             </button>
           </div>
         </form>

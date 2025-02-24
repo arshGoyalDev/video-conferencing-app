@@ -23,6 +23,8 @@ const LoginPage = () => {
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     if (userInfo.email) router.push("/app");
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -31,6 +33,8 @@ const LoginPage = () => {
   const handleLogin = async () => {
     if (authErrors(email, password, setErrorEmail, setErrorPassword)) {
       try {
+        setLoading(true);
+
         const response = await apiClient.post(
           routes.LOGIN,
           {
@@ -42,7 +46,7 @@ const LoginPage = () => {
 
         if (response.status === 201) {
           setUserInfo(response.data.user);
-
+          setLoading(false);
           router.push("/app");
         }
 
@@ -55,6 +59,8 @@ const LoginPage = () => {
         } else {
           setErrorPassword("Internal server error, please try after some time");
         }
+
+        setLoading(false);
       }
     }
   };
@@ -96,8 +102,12 @@ const LoginPage = () => {
               errorPassword={errorPassword}
             />
 
-            <button className="font-bold mt-6 w-full py-[10px] text-black hover:text-white bg-neutral-100 hover:bg-opacity-10 border-2 border-neutral-50 hover:border-neutral-700 rounded-lg transition-all duration-300">
-              Login
+            <button className="grid place-content-center font-bold mt-6 w-full py-[10px] text-black bg-white hover:bg-opacity-80 border-2 border-neutral-50 rounded-lg transition-all duration-300">
+              {loading ? (
+                <div className="w-5 h-5 border-b-2 border-r-2 border-black rounded-full animate-spin"></div>
+              ) : (
+                <span>Login</span>
+              )}
             </button>
           </div>
         </form>

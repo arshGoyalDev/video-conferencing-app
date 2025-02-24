@@ -18,8 +18,11 @@ const BottomNav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="fixed left-1/2 -translate-x-1/2 bottom-10 flex items-center gap-3 py-3 px-3 bg-neutral-900 border-2 border-neutral-800 rounded-lg">
-      <button className="py-2 px-3 flex gap-2 items-center aspect-square md:aspect-auto bg-neutral-950 border-2 border-neutral-800 rounded-md">
+    <div className="fixed z-10 left-1/2 -translate-x-1/2 bottom-10 flex items-center gap-3 py-3 px-3 bg-neutral-900 border-2 border-neutral-800 rounded-lg">
+      <Link
+        href={"/app?new-meet=true"}
+        className="py-2 px-3 flex gap-2 items-center aspect-square md:aspect-auto bg-neutral-950 border-2 border-neutral-800 rounded-md"
+      >
         <span className="stroke-white">
           <svg
             width="20"
@@ -49,7 +52,7 @@ const BottomNav = () => {
           </svg>
         </span>
         <span className="md:block hidden pt-0.5 text-nowrap">New Meet</span>
-      </button>
+      </Link>
       <button className="py-2 px-3 aspect-square md:aspect-auto flex gap-2 items-center bg-neutral-950 border-2 border-neutral-800 rounded-md">
         <span className="stroke-white">
           <svg
