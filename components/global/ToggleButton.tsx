@@ -8,7 +8,7 @@ const ToggleButton = ({value, setValue}: {value: boolean; setValue: Dispatch<Set
     }}
     className="relative w-16 h-7 bg-neutral-950 border-2 border-neutral-800 rounded-md"
     >
-      <span className={`absolute top-1/2 -translate-y-1/2 left-1 ${value && "translate-x-9"} w-4 h-4 ${value ? "bg-white" : "bg-neutral-500"} rounded-sm transition-all duration-200`}></span>
+      <span className={`absolute top-1/2 -translate-y-1/2  ${value ? "left-10" : "left-1"} w-4 h-4 ${value ? "bg-white" : "bg-neutral-500"} rounded-sm transition-all duration-200`}></span>
     </button>
   )
 }

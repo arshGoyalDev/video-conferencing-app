@@ -5,6 +5,18 @@ const USER_INFO = `${AUTH}/user-info`;
 const UPDATE_DETAILS = `${AUTH}/update-details`;
 const LOGOUT = `${AUTH}/logout`;
 const ADD_PROFILE_PIC = `${AUTH}/add-profile-pic`;
-const REMOVE_PROFILE_PIC = `${AUTH}/remove-profile-pic`
+const REMOVE_PROFILE_PIC = `${AUTH}/remove-profile-pic`;
 
-export { SIGN_UP, LOGIN, USER_INFO, UPDATE_DETAILS, LOGOUT, ADD_PROFILE_PIC, REMOVE_PROFILE_PIC };
+const MEET = "meet";
+const NEW_MEET = `${MEET}/new-meet`;
+
+export {
+  SIGN_UP,
+  LOGIN,
+  USER_INFO,
+  UPDATE_DETAILS,
+  LOGOUT,
+  ADD_PROFILE_PIC,
+  REMOVE_PROFILE_PIC,
+  NEW_MEET,
+};
