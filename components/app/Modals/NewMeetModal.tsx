@@ -57,7 +57,7 @@ const NewMeetModal = () => {
     <div className="z-20 fixed top-0 left-0 grid place-content-center w-full h-full">
       <div
         onClick={() => router.push("/app")}
-        className="fixed top-0 left-0 w-full h-full z-20 bg-neutral-950 bg-opacity-25 backdrop-blur-sm"
+        className="fixed top-0 left-0 w-full h-full z-20 bg-neutral-950 bg-opacity-25 backdrop-blur-[8px]"
       ></div>
 
       <div className="z-30 w-[90vw] max-w-[680px] bg-neutral-950 border-2 border-neutral-800 rounded-lg">
