@@ -1,16 +1,17 @@
+import { useDeviceSettings } from "@/context";
+
 import useAppStore from "@/store";
+
 import { useRouter } from "next/navigation";
+
 import { useEffect, useState } from "react";
 
-const Navbar = ({
-  tab,
-  stopVideo,
-}: {
-  tab: string | null;
-  stopVideo: () => void;
-}) => {
-  const { userInfo } = useAppStore();
+const Navbar = ({ tab }: { tab: string | null }) => {
   const router = useRouter();
+
+  const { userInfo } = useAppStore();
+  const { stopVideo } = useDeviceSettings();
+
   const [currentTab, setCurrentTab] = useState(tab ?? "profile");
 
   useEffect(() => {

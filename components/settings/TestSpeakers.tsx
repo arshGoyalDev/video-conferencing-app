@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 import useAppStore from "@/store";
 
-const TestSpeakers = () => {
+const TestSpeakers = ({darkerTheme}: {darkerTheme?:boolean}) => {
   const { settings, setSettings } = useAppStore();
 
   const [speakerDevices, setSpeakerDevices] = useState<MediaDeviceInfo[] | []>(
@@ -72,7 +72,7 @@ const TestSpeakers = () => {
   }, [selectedSpeakerDevice]);
 
   return (
-    <div className="flex flex-col py-5 w-[80vw] max-w-[700px] bg-neutral-900 border-2 border-neutral-800 rounded-lg">
+    <div className={`flex flex-col py-5 w-full ${darkerTheme ? "bg-neutral-950" : "bg-neutral-900"} border-2 border-neutral-800 rounded-lg`}>
       <h2 className="px-5 text-neutral-500 text-sm uppercase font-bold border-b-2 border-neutral-800 pb-4">
         Speakers
       </h2>

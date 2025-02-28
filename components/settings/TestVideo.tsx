@@ -1,21 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
-import { ToggleButton } from "@/components/global";
-import useAppStore from "@/store";
-import { RefObject, useEffect, useState } from "react";
 
-const VideoTab = ({
-  hasPermission,
-  videoRef,
-  startVideo,
-  stopVideo,
-  videoRunning,
-}: {
-  hasPermission: boolean;
-  videoRef: RefObject<HTMLVideoElement | null>;
-  startVideo: () => void;
-  stopVideo: () => void;
-  videoRunning: boolean;
-}) => {
+import { ToggleButton } from "@/components/global";
+
+import { useDeviceSettings } from "@/context";
+
+import useAppStore from "@/store";
+
+import { useEffect, useState } from "react";
+
+const TestVideo = ({ darkerTheme }: { darkerTheme?: boolean }) => {
+  const { hasPermission, startVideo, stopVideo, videoRunning, videoRef } =
+    useDeviceSettings();
+
   const { userInfo } = useAppStore();
   const [videoFlip, setVideoFlip] = useState(false);
 
@@ -25,8 +21,8 @@ const VideoTab = ({
   }, []);
 
   return (
-    <div className="pt-20 pb-40 min-h-screen flex flex-col gap-10 items-center justify-center">
-      <div className="relative w-[85vw] p-4 md:max-w-[810px] aspect-video bg-neutral-900 border-2 border-neutral-800 rounded-lg">
+    <div className=" flex flex-col gap-5 items-center justify-center">
+      <div className="relative aspect-video bg-neutral-900 border-2 border-neutral-800 rounded-lg">
         {hasPermission ? (
           <>
             {videoRunning ? (
@@ -34,7 +30,7 @@ const VideoTab = ({
                 ref={videoRef}
                 autoPlay
                 playsInline
-                className={`w-full h-full object-cover border-2 border-neutral-800 rounded-lg ${
+                className={`w-full h-full object-cover rounded-lg ${
                   videoFlip && "-scale-x-100 scale-y-100"
                 }`}
               />
@@ -78,7 +74,7 @@ const VideoTab = ({
                 if (videoRunning) stopVideo();
                 else startVideo();
               }}
-              className={`absolute bottom-7 left-1/2 -translate-x-1/2 py-1.5 px-3 lg:py-2 lg:px-5 ${
+              className={`absolute bottom-3 lg:bottom-7 left-1/2 -translate-x-1/2 py-1.5 px-3 lg:py-2 lg:px-5 ${
                 videoRunning ? "bg-red-600" : "bg-white"
               } rounded-md `}
             >
@@ -108,7 +104,13 @@ const VideoTab = ({
         )}
       </div>
 
-      <div className="flex flex-col gap-1  w-[85vw] py-4 md:max-w-[600px] bg-neutral-900 border-2 border-neutral-800 rounded-lg">
+      <div
+        className={`flex flex-col gap-1 w-full py-4 ${
+          darkerTheme
+            ? "bg-neutral-950"
+            : "bg-neutral-900 mt-6 md:max-w-[600px]"
+        } border-2 border-neutral-800 rounded-lg`}
+      >
         <h2 className="text-neutral-500 text-sm uppercase font-bold border-b-2 border-neutral-800 pb-3 px-4">
           Video Settings
         </h2>
@@ -120,4 +122,4 @@ const VideoTab = ({
     </div>
   );
 };
-export default VideoTab;
+export default TestVideo;

@@ -45,6 +45,7 @@ const NewMeetModal = () => {
 
       if (response.status === 201) {
         setLoading(false);
+        // console.log(meetLink);
         router.push(meetLink);
       }
     } catch (error) {

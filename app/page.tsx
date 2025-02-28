@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <main className="flex flex-col h-screen">
       <header className="w-[90vw] lg:w-[75vw] flex items-center justify-between py-4 px-6 mt-6 lg:mt-10 mx-auto bg-neutral-900 bg-opacity-50 border-2 border-neutral-800 rounded-lg">
-        <h2 className="text-xl font-bold">ChatCAM</h2>
+        <h2 className="text-xl font-bold">MEETSpace</h2>
 
         <nav className="flex items-center gap-2 ">
           <Link
@@ -23,7 +23,7 @@ const Home = () => {
       </header>
 
       <div className="flex flex-col h-full items-center justify-center gap-4 pb-20">
-        <h1 className="text-3xl lg:text-6xl font-bold">ChatCAM</h1>
+        <h1 className="text-3xl lg:text-6xl font-bold">MEETSpace</h1>
         <p className="w-[90vw] md:w-[420px] text-center">
           A Video Conferencing App, to connect to friends and family online,
           held official meetings and discussions and much more.

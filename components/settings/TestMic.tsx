@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-const TestMic = () => {
+const TestMic = ({ darkerTheme }: { darkerTheme?: boolean }) => {
   const [micDevices, setMicDevices] = useState<MediaDeviceInfo[] | []>([]);
   const [selectedMic, setSelectedMic] = useState("");
   const [micDevicesMenu, setMicDevicesMenu] = useState(false);
@@ -116,7 +116,7 @@ const TestMic = () => {
   };
 
   return (
-    <div className="flex flex-col py-5 w-[80vw] max-w-[700px] bg-neutral-900 border-2 border-neutral-800 rounded-lg">
+    <div className={`flex flex-col py-5 w-full ${darkerTheme ? "bg-neutral-950" : "bg-neutral-900"} border-2 border-neutral-800 rounded-lg`}>
       <h2 className="px-5 text-neutral-500 text-sm uppercase font-bold border-b-2 border-neutral-800 pb-4">
         Microphone
       </h2>

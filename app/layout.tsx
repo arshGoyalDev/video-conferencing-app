@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Josefin_Sans } from "next/font/google";
 
 import "./globals.css";
+import ContextContainer from "@/context";
 
 const josefinSans = Josefin_Sans({
   subsets: ["latin"],
@@ -24,7 +25,7 @@ const RootLayout = ({
       <body
         className={`${josefinSans.className} bg-neutral-950 text-neutral-50`}
       >
-        {children}
+        <ContextContainer>{children}</ContextContainer>
       </body>
     </html>
   );
