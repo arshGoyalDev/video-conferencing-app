@@ -16,7 +16,7 @@ const AppPage = () => {
   const [meetId, setMeetId] = useState("");
 
   const joinMeet = () => {
-    if (meetId) router.push(`/meet/${meetId}`);
+    if (meetId) router.push(`/meet?meet-id=${meetId}`);
   }
 
   return (

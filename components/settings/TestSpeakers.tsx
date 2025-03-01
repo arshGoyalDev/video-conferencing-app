@@ -2,13 +2,19 @@ import { useState, useEffect, useRef } from "react";
 
 import useAppStore from "@/store";
 
-const TestSpeakers = ({darkerTheme}: {darkerTheme?:boolean}) => {
+import { useDeviceSettings } from "@/context";
+
+const TestSpeakers = ({ darkerTheme }: { darkerTheme?: boolean }) => {
   const { settings, setSettings } = useAppStore();
+  const {
+    handleSpeakerChange,
+    selectedSpeakerDevice,
+    setSelectedSpeakerDevice,
+  } = useDeviceSettings();
 
   const [speakerDevices, setSpeakerDevices] = useState<MediaDeviceInfo[] | []>(
     []
   );
-  const [selectedSpeakerDevice, setSelectedSpeakerDevice] = useState("");
   const [speakerDevicesMenu, setSpeakerDevicesMenu] = useState(false);
   const [audioPaused, setAudioPaused] = useState(false);
 
@@ -40,27 +46,12 @@ const TestSpeakers = ({darkerTheme}: {darkerTheme?:boolean}) => {
         getAudioDevices
       );
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const handleDeviceChange = async (deviceId: string) => {
-    try {
-      const audioElements = document.querySelectorAll("audio");
-
-      audioElements.forEach((audio) => {
-        audio.setSinkId(deviceId);
-      });
-
-      setSelectedSpeakerDevice(deviceId);
-      setSpeakerDevicesMenu(false);
-    } catch (err) {
-      console.error("Error switching device:", err);
-    }
-  };
 
   useEffect(() => {
     const newSettings = {
-      video: settings.video,
-      mic: settings.mic,
+      ...settings,
       speaker: {
         volume: settings.speaker.volume,
         device: selectedSpeakerDevice,
@@ -72,7 +63,11 @@ const TestSpeakers = ({darkerTheme}: {darkerTheme?:boolean}) => {
   }, [selectedSpeakerDevice]);
 
   return (
-    <div className={`flex flex-col py-5 w-full ${darkerTheme ? "bg-neutral-950" : "bg-neutral-900"} border-2 border-neutral-800 rounded-lg`}>
+    <div
+      className={`flex flex-col py-5 w-full ${
+        darkerTheme ? "bg-neutral-950" : "bg-neutral-900"
+      } border-2 border-neutral-800 rounded-lg`}
+    >
       <h2 className="px-5 text-neutral-500 text-sm uppercase font-bold border-b-2 border-neutral-800 pb-4">
         Speakers
       </h2>
@@ -188,7 +183,10 @@ const TestSpeakers = ({darkerTheme}: {darkerTheme?:boolean}) => {
               {speakerDevices.map((device) => (
                 <button
                   key={device.deviceId}
-                  onClick={() => handleDeviceChange(device.deviceId)}
+                  onClick={() => {
+                    handleSpeakerChange(device.deviceId);
+                    setSpeakerDevicesMenu(false);
+                  }}
                   className="text-left"
                 >
                   {!device.label.includes("Default") &&

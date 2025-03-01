@@ -11,9 +11,20 @@ import { useEffect, useState } from "react";
 const TestVideo = ({ darkerTheme }: { darkerTheme?: boolean }) => {
   const { hasPermission, startVideo, stopVideo, videoRunning, videoRef } =
     useDeviceSettings();
+  const { userInfo, setSettings, settings } = useAppStore();
 
-  const { userInfo } = useAppStore();
   const [videoFlip, setVideoFlip] = useState(false);
+
+  useEffect(() => {
+    setSettings({
+      ...settings,
+      video: {
+        ...settings.video,
+        videoFlip,
+      },
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [videoFlip]);
 
   useEffect(() => {
     startVideo();
@@ -21,7 +32,7 @@ const TestVideo = ({ darkerTheme }: { darkerTheme?: boolean }) => {
   }, []);
 
   return (
-    <div className=" flex flex-col gap-5 items-center justify-center">
+    <div className="flex flex-col gap-5 items-center justify-center">
       <div
         className={`relative w-full aspect-video ${
           darkerTheme ? "bg-neutral-950" : "bg-neutral-900"

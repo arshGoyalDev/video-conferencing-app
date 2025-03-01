@@ -18,6 +18,8 @@ const authSlice: StateCreator<AuthSlice> = (set) => ({
     lastName: "",
     guestStatus: false,
     profilePic: "",
+    meet: [],
+    adminMeets: [],
   },
 
   settings: {
@@ -25,11 +27,13 @@ const authSlice: StateCreator<AuthSlice> = (set) => ({
       videoFlip: false,
     },
     mic: {
+      device: "",
       volume: 10,
     },
     speaker: {
+      device: "",
       volume: 10,
-    }
+    },
   },
 
   setSettings: (settings) => set({ settings }),
