@@ -48,7 +48,7 @@ const logout = async (
         profilePic: "",
       });
 
-      router.push("/sign-up");
+      router.push("/auth");
     } else throw new Error("Internal Server Error");
   } catch (error) {
     console.log(error);

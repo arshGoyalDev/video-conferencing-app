@@ -23,14 +23,16 @@ const Template = ({ children }: { children: ReactElement }) => {
 
         if (response.status === 200) {
           setUserInfo(response.data.user);
+
+          if (pathname === "/auth") {
+            router.push("/app");
+          }
         } else {
           throw new Error("No user found");
         }
       } catch (error) {
         if (error) {
-          if (pathname !== "/login") {
-            router.push("/sign-up");
-          }
+          router.push("/auth");
         }
       }
     };

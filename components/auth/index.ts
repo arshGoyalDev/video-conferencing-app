@@ -1,4 +1,4 @@
-import Input from "./Input";
-import PasswordInput from "./PasswordInput";
+import SignupTab from "./SignupTab";
+import LoginTab from "./LoginTab";
 
-export { Input, PasswordInput };
+export { SignupTab, LoginTab };

@@ -6,13 +6,13 @@ import { useEffect, useState } from "react";
 import ModalHeader from "./ModalHeader";
 import { ToggleButton } from "@/components/global";
 
-import { generateMeetLink } from "@/lib/functions/meet";
+import { generateMeetId } from "@/lib/functions/meet";
 import { apiClient, routes } from "@/lib/api";
 
 const NewMeetModal = () => {
   const router = useRouter();
 
-  const [meetLink, setMeetLink] = useState("");
+  const [meetId, setMeetId] = useState("");
 
   const [allowMic, setAllowMic] = useState(true);
   const [allowVideo, setAllowVideo] = useState(true);
@@ -21,9 +21,9 @@ const NewMeetModal = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const generatedMeetLink = generateMeetLink();
+    const generatedMeetId = generateMeetId();
 
-    setMeetLink(generatedMeetLink);
+    setMeetId(generatedMeetId);
   }, []);
 
   const startMeet = async () => {
@@ -33,7 +33,7 @@ const NewMeetModal = () => {
       const response = await apiClient.post(
         routes.NEW_MEET,
         {
-          meetId: meetLink.split("/").at(-1),
+          meetId,
           allowMic,
           allowVideo,
           anyoneCanJoin,
@@ -45,8 +45,7 @@ const NewMeetModal = () => {
 
       if (response.status === 201) {
         setLoading(false);
-        // console.log(meetLink);
-        router.push(meetLink);
+        router.push(`/meet?meet-id=${meetId}`);
       }
     } catch (error) {
       setLoading(false);
@@ -71,12 +70,12 @@ const NewMeetModal = () => {
             </h2>
             <div className="flex flex-col md:flex-row items-end  md:items-center gap-2">
               <div className="w-full break-words text-neutral-300 py-2 px-3 bg-neutral-900 border-2 border-neutral-800 focus:border-neutral-800 rounded-md">
-                http://localhost:3000{meetLink}
+                http://localhost:3000/meet?meet-id={meetId}
               </div>
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(
-                    `http://localhost:3000${meetLink}`
+                    `http://localhost:3000${meetId}`
                   );
                 }}
                 className="bg-white hover:bg-neutral-200 text-nowrap text-black py-2 px-3 font-semibold border-2 border-white rounded-md"
@@ -104,7 +103,9 @@ const NewMeetModal = () => {
                 <ToggleButton value={allowVideo} setValue={setAllowVideo} />
               </div>
               <div className="flex flex-col items-end gap-2 md:flex-row md:items-center justify-between">
-                <h3 className="uppercase w-full md:w-fit text-sm">Anyone can join</h3>
+                <h3 className="uppercase w-full md:w-fit text-sm">
+                  Anyone can join
+                </h3>
                 <ToggleButton
                   value={anyoneCanJoin}
                   setValue={setAnyoneCanJoin}

@@ -1,4 +1,4 @@
-const generateMeetLink = () => {
+const generateMeetId = () => {
   let result = " ";
 
   const characters =
@@ -10,9 +10,9 @@ const generateMeetLink = () => {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
 
-  const meetLink = `/meet/${result.slice(1, 20)}`;
+  const meetId = `${result.slice(1, 20)}`;
 
-  return meetLink;
+  return meetId;
 };
 
-export { generateMeetLink };
+export { generateMeetId };
